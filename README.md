@@ -10,7 +10,7 @@ Ein Dashboard für das Flottenmanagement eines fiktiven Unternehmens mit fünf S
 
 Das Projekt ist Teil meines Portfolios. Es zeigt den vollständigen Weg von den Rohdaten bis zur Auswertung:
 
-- **Datengenerierung in Python** mit realistischen Regeln und festem Seed (reproduzierbar)
+- **Datengenerierung in Python** mit realistischen Regeln, festem Seed und dem heutigen Datum als Stichtag
 - **Relationales Datenmodell in SQLite** mit Primär- und Fremdschlüsseln sowie CHECK-Constraints
 - **SQL-Auswertungen** mit JOINs, CTEs, CASE-Pivot und Fensterfunktionen (`queries.sql`)
 - **Frontend ohne Framework und ohne Build-Schritt** (HTML, CSS, JavaScript, Chart.js), lauffähig auf GitHub Pages
@@ -32,7 +32,7 @@ Weitere Eigenschaften:
 
 ## Die Daten
 
-`generate_data.py` erzeugt vier Tabellen für den Zeitraum vom 01.01.2024 bis zum **Stichtag 10.10.2026**:
+`generate_data.py` erzeugt vier Tabellen für den Zeitraum vom 01.01.2024 bis zum **Stichtag**. Der Stichtag ist das Datum, an dem das Skript ausgeführt wird. Die Zeilenzahlen unten beziehen sich auf einen Lauf am 10.10.2026:
 
 | Tabelle | Inhalt | Zeilen |
 |---|---|---|
@@ -49,7 +49,11 @@ Die Daten folgen realistischen Regeln:
 - Die Kennzeichen tragen das Kürzel des Standorts (LU, MA, HD, SP, FT). E-Fahrzeuge haben ein E-Kennzeichen.
 - Einige Termine sind absichtlich überfällig oder stehen in den nächsten 30 Tagen an.
 
-Dank des festen Seeds (`SEED = 42`) und des festen Stichtags (`STICHTAG`) liefert jeder Lauf exakt dieselben Daten. Um die Daten zu aktualisieren, genügt es, den Stichtag in `generate_data.py` zu ändern.
+Der Stichtag ist das „Heute“ aus Sicht der Daten: Die Historie endet dort, und überfällige oder bald fällige Termine werden relativ zu diesem Datum berechnet. Standardmäßig gilt `STICHTAG = date.today()`, die Termine sind also bei jedem Lauf aktuell.
+
+- Dank des festen Seeds (`SEED = 42`) liefern zwei Läufe **am selben Tag** exakt dieselben Daten. An einem anderen Tag entsteht ein neuer Datenstand.
+- Für dauerhaft identische Daten (z. B. für Screenshots) `STICHTAG` in `generate_data.py` auf ein festes Datum setzen, etwa `date(2026, 10, 10)`.
+- Das Dashboard rechnet mit dem Stichtag aus `daten.json`, nicht mit dem Datum des Browsers. Die Online-Version zeigt daher den Stand des letzten Laufs. Um sie zu aktualisieren: Skript ausführen, dann `git add -A`, `git commit` und `git push`.
 
 ## Projekt starten
 

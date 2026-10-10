@@ -4,9 +4,9 @@
 -- Ausführen z. B. mit:  sqlite3 daten/flotte.db < queries.sql
 -- oder einzeln in DB Browser for SQLite / DBeaver.
 --
--- Der Stichtag der synthetischen Daten ist der 10.10.2026. Er steht in jeder
--- Abfrage, die ihn braucht, in einer CTE "parameter", damit er an einer
--- Stelle geändert werden kann.
+-- Der Stichtag ist das aktuelle Datum (date('now', 'localtime')), passend zu
+-- generate_data.py. Er steht in jeder Abfrage, die ihn braucht, in einer CTE
+-- "parameter" und kann dort durch ein festes Datum wie '2026-10-10' ersetzt werden.
 -- ==========================================================================
 
 
@@ -62,7 +62,7 @@ LIMIT 10;
 -- 3) Überfällige Termine, sortiert nach Tagen Verzug
 --    julianday() rechnet Datumsdifferenzen in Tagen.
 -- --------------------------------------------------------------------------
-WITH parameter AS (SELECT '2026-10-10' AS stichtag)
+WITH parameter AS (SELECT date('now', 'localtime') AS stichtag)
 SELECT
     f.kennzeichen,
     f.standort,
@@ -80,7 +80,7 @@ ORDER BY tage_ueberfaellig DESC;
 -- --------------------------------------------------------------------------
 -- 4) Termine in den nächsten 30 Tagen
 -- --------------------------------------------------------------------------
-WITH parameter AS (SELECT '2026-10-10' AS stichtag)
+WITH parameter AS (SELECT date('now', 'localtime') AS stichtag)
 SELECT
     t.faellig_am,
     t.art,
@@ -152,7 +152,7 @@ ORDER BY altersklasse;
 WITH km_12_monate AS (
     SELECT fahrzeug_id, SUM(kilometer) AS km
     FROM fahrten
-    WHERE monat >= '2025-10'
+    WHERE monat >= strftime('%Y-%m', 'now', 'localtime', '-12 months')
     GROUP BY fahrzeug_id
 )
 SELECT

@@ -9,8 +9,10 @@ Ausgabe:
   daten/flotte.db   (SQLite-Datenbank mit denselben 4 Tabellen)
   daten.json        (wird vom Dashboard im Browser gelesen)
 
-Alle Daten sind frei erfunden. Durch den festen Seed und den festen Stichtag
-liefert jeder Lauf exakt dasselbe Ergebnis.
+Alle Daten sind frei erfunden. Der Stichtag ist das heutige Datum: Termine und
+Fristen sind dadurch immer aktuell. Dank des festen Seeds liefern zwei Läufe am
+selben Tag identische Daten; an einem anderen Tag entsteht ein neuer Datenstand.
+Für dauerhaft identische Daten STICHTAG auf ein festes Datum setzen.
 
 Aufruf:  python generate_data.py
 """
@@ -27,7 +29,7 @@ from pathlib import Path
 # --------------------------------------------------------------------------
 
 SEED = 42
-STICHTAG = date(2026, 10, 10)        # "Heute" aus Sicht der Daten
+STICHTAG = date.today()        # "Heute" aus Sicht der Daten (für feste Daten z. B. date(2026, 10, 10))
 HISTORIE_START = date(2024, 1, 1)
 ANZAHL_FAHRZEUGE = 50
 
