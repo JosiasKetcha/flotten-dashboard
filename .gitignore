@@ -1,0 +1,17 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# SQLite-Hilfsdateien (die Datenbank selbst wird versioniert)
+*.db-journal
+*.db-wal
+*.db-shm
+
+# Editoren und Betriebssysteme
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini

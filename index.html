@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Flotten-Dashboard</title>
+  <meta name="description" content="Flottenmanagement-Dashboard mit synthetischen Daten: Fahrzeuge, Wartungen, Kosten und Prüftermine.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="skip-link" href="#inhalt">Zum Inhalt springen</a>
+
+  <div class="hinweis-banner" role="note">
+    <span class="hinweis-punkt" aria-hidden="true"></span>
+    Daten synthetisch erzeugt &middot; fiktives Unternehmen, keine echten Fahrzeuge
+  </div>
+
+  <header class="kopf">
+    <div class="kopf-titel">
+      <p class="label">Fuhrpark Rhein-Neckar</p>
+      <h1>Flotten-Dashboard</h1>
+    </div>
+    <p class="stichtag label">Stichtag <time id="stichtag">–</time></p>
+  </header>
+
+  <main id="inhalt">
+    <section class="kennzahlen" aria-label="Kennzahlen">
+      <article class="kachel">
+        <h2 class="label">Aktive Fahrzeuge</h2>
+        <p class="wert" id="kpi-aktiv">–</p>
+        <p class="unter" id="kpi-aktiv-unter"></p>
+      </article>
+      <article class="kachel">
+        <h2 class="label">In Werkstatt</h2>
+        <p class="wert" id="kpi-werkstatt">–</p>
+        <p class="unter" id="kpi-werkstatt-unter"></p>
+      </article>
+      <article class="kachel">
+        <h2 class="label" id="kpi-kosten-label">Wartungskosten</h2>
+        <p class="wert" id="kpi-kosten">–</p>
+        <p class="unter" id="kpi-kosten-unter"></p>
+      </article>
+      <article class="kachel kachel-akzent">
+        <h2 class="label">Fällig in 30 Tagen</h2>
+        <p class="wert" id="kpi-faellig">–</p>
+        <p class="unter" id="kpi-faellig-unter"></p>
+      </article>
+    </section>
+
+    <section class="panel" aria-labelledby="alarme-titel">
+      <div class="panel-kopf">
+        <h2 id="alarme-titel">Warnungen</h2>
+        <p class="legende label">
+          <span class="badge badge-rot">Überfällig</span>
+          <span class="badge badge-orange">≤ 30 Tage</span>
+        </p>
+      </div>
+      <ol class="alarme" id="alarme" tabindex="0" aria-labelledby="alarme-titel"></ol>
+    </section>
+
+    <section class="diagramme" aria-label="Diagramme">
+      <figure class="panel diagramm-breit">
+        <figcaption class="panel-kopf">
+          <h2>Wartungskosten pro Monat</h2>
+          <span class="label" id="monat-hinweis"></span>
+        </figcaption>
+        <div class="diagramm-flaeche">
+          <canvas id="chart-monat" role="img" aria-label="Balkendiagramm der Wartungskosten pro Monat"></canvas>
+        </div>
+      </figure>
+      <figure class="panel">
+        <figcaption class="panel-kopf">
+          <h2>Kosten nach Fahrzeugtyp</h2>
+          <span class="label">seit 01/2024</span>
+        </figcaption>
+        <div class="diagramm-flaeche">
+          <canvas id="chart-typ" role="img" aria-label="Wartungskosten je Fahrzeugtyp"></canvas>
+        </div>
+      </figure>
+      <figure class="panel">
+        <figcaption class="panel-kopf">
+          <h2>Kilometer – Top 10</h2>
+          <span class="label">seit 01/2024</span>
+        </figcaption>
+        <div class="diagramm-flaeche">
+          <canvas id="chart-km" role="img" aria-label="Die 10 Fahrzeuge mit den meisten Kilometern"></canvas>
+        </div>
+      </figure>
+    </section>
+
+    <section class="panel" aria-labelledby="tabelle-titel">
+      <div class="panel-kopf">
+        <h2 id="tabelle-titel">Fahrzeuge</h2>
+        <p class="label" id="treffer" aria-live="polite"></p>
+      </div>
+
+      <form class="filter" id="filter" role="search" onsubmit="return false">
+        <div class="feld feld-suche">
+          <label class="label" for="suche">Suche</label>
+          <input type="search" id="suche" placeholder="Kennzeichen, Marke, Modell" autocomplete="off">
+        </div>
+        <div class="feld">
+          <label class="label" for="filter-typ">Typ</label>
+          <select id="filter-typ"><option value="">Alle</option></select>
+        </div>
+        <div class="feld">
+          <label class="label" for="filter-status">Status</label>
+          <select id="filter-status"><option value="">Alle</option></select>
+        </div>
+        <div class="feld">
+          <label class="label" for="filter-standort">Standort</label>
+          <select id="filter-standort"><option value="">Alle</option></select>
+        </div>
+        <button type="reset" class="knopf" id="filter-reset">Zurücksetzen</button>
+      </form>
+
+      <div class="tabelle-rahmen" tabindex="0" role="region" aria-labelledby="tabelle-titel">
+        <table class="tabelle">
+          <caption class="sr-only">Alle Fahrzeuge. Spaltenköpfe sind Schaltflächen zum Sortieren, Kennzeichen öffnen die Detailansicht.</caption>
+          <thead>
+            <tr>
+              <th scope="col" data-spalte="kennzeichen"><button type="button">Kennzeichen</button></th>
+              <th scope="col" data-spalte="typ"><button type="button">Typ</button></th>
+              <th scope="col" data-spalte="fahrzeug"><button type="button">Fahrzeug</button></th>
+              <th scope="col" data-spalte="baujahr" class="zahl"><button type="button">Baujahr</button></th>
+              <th scope="col" data-spalte="kraftstoff"><button type="button">Kraftstoff</button></th>
+              <th scope="col" data-spalte="standort"><button type="button">Standort</button></th>
+              <th scope="col" data-spalte="status"><button type="button">Status</button></th>
+              <th scope="col" data-spalte="km" class="zahl"><button type="button">Kilometer</button></th>
+              <th scope="col" data-spalte="kosten" class="zahl"><button type="button">Kosten</button></th>
+            </tr>
+          </thead>
+          <tbody id="tabelle-koerper"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <dialog class="detail" id="detail" aria-labelledby="detail-titel">
+    <div class="detail-kopf">
+      <div>
+        <p class="label" id="detail-unter"></p>
+        <h2 id="detail-titel"></h2>
+      </div>
+      <button type="button" class="knopf" id="detail-schliessen" aria-label="Detailansicht schließen">Schließen</button>
+    </div>
+    <div class="detail-inhalt">
+      <dl class="detail-infos" id="detail-infos"></dl>
+
+      <h3>Nächste Termine</h3>
+      <ul class="detail-termine" id="detail-termine"></ul>
+
+      <h3>Wartungshistorie</h3>
+      <div class="tabelle-rahmen" tabindex="0" role="region" aria-label="Wartungshistorie">
+        <table class="tabelle tabelle-kompakt">
+          <thead>
+            <tr>
+              <th scope="col">Datum</th>
+              <th scope="col">Art</th>
+              <th scope="col">Werkstatt</th>
+              <th scope="col" class="zahl">Tage</th>
+              <th scope="col" class="zahl">Kosten</th>
+            </tr>
+          </thead>
+          <tbody id="detail-wartungen"></tbody>
+        </table>
+      </div>
+    </div>
+  </dialog>
+
+  <footer class="fuss label">
+    Portfolio-Projekt &middot; Daten synthetisch erzeugt mit generate_data.py
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

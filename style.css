@@ -1,0 +1,434 @@
+/* ==========================================================================
+   Flotten-Dashboard – Stil "Cockpit"
+   Eine Akzentfarbe (Signalorange), dunkler Hintergrund, Mono für Zahlen.
+   ========================================================================== */
+
+:root {
+  --hintergrund: #0F100E;
+  --flaeche: #171916;
+  --flaeche-2: #1E201C;
+  --linie: #2C2F29;
+  --text: #ECEDE8;
+  --text-gedaempft: #A3A69C;   /* Kontrast ≥ 7:1 auf --hintergrund */
+  --akzent: #FF6A1F;
+  --rot: #FF4D4D;              /* nur für überfällige Termine */
+
+  --mono: "JetBrains Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+  --titel: "Space Grotesk", system-ui, sans-serif;
+
+  --radius: 4px;
+  --abstand: clamp(1rem, 2.5vw, 2rem);
+}
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html { color-scheme: dark; }
+
+body {
+  margin: 0;
+  background: var(--hintergrund);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: 0.9375rem;
+  line-height: 1.5;
+}
+
+h1, h2, h3 { font-family: var(--titel); font-weight: 700; margin: 0; }
+
+.label {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-gedaempft);
+  font-weight: 500;
+  margin: 0;
+}
+
+/* Tastaturfokus immer sichtbar */
+:focus-visible {
+  outline: 2px solid var(--akzent);
+  outline-offset: 2px;
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -3rem;
+  background: var(--akzent);
+  color: var(--hintergrund);
+  padding: 0.5rem 1rem;
+  z-index: 10;
+  font-weight: 700;
+}
+.skip-link:focus { top: 1rem; }
+
+/* ---------- Hinweis-Banner ---------- */
+.hinweis-banner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0.5rem var(--abstand);
+  border-bottom: 1px solid var(--akzent);
+  background: var(--flaeche);
+  color: var(--akzent);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-align: center;
+}
+.hinweis-punkt {
+  width: 8px;
+  height: 8px;
+  flex: none;
+  background: var(--akzent);
+}
+
+/* ---------- Kopf ---------- */
+.kopf {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: var(--abstand);
+  border-bottom: 1px solid var(--linie);
+}
+.kopf h1 {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  letter-spacing: -0.02em;
+  margin-top: 0.25rem;
+}
+.stichtag time { color: var(--text); }
+
+main {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);   /* breite Tabellen dürfen die Seite nicht verbreitern */
+  gap: var(--abstand);
+  padding: var(--abstand);
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* ---------- Kennzahlen ---------- */
+.kennzahlen {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 1px;
+  background: var(--linie);           /* 1px-Raster zwischen den Kacheln */
+  border: 1px solid var(--linie);
+}
+.kachel {
+  background: var(--flaeche);
+  padding: 1.25rem 1.25rem 1rem;
+  position: relative;
+}
+.kachel::before {                     /* kleine Markierung oben links */
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 24px;
+  height: 2px;
+  background: var(--linie);
+}
+.kachel-akzent::before { background: var(--akzent); }
+.wert {
+  font-family: var(--mono);
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  font-weight: 700;
+  line-height: 1.1;
+  margin: 0.6rem 0 0.4rem;
+  font-variant-numeric: tabular-nums;
+}
+.kachel-akzent .wert { color: var(--akzent); }
+.unter {
+  margin: 0;
+  font-size: 0.8125rem;
+  color: var(--text-gedaempft);
+}
+
+/* ---------- Panels ---------- */
+.panel {
+  background: var(--flaeche);
+  border: 1px solid var(--linie);
+}
+.panel-kopf {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--linie);
+}
+.panel-kopf h2 { font-size: 1.125rem; }
+.legende { display: flex; gap: 0.5rem; }
+
+/* ---------- Badges ---------- */
+.badge {
+  display: inline-block;
+  padding: 0.15rem 0.5rem;
+  border: 1px solid currentColor;
+  border-radius: var(--radius);
+  font-size: 0.6875rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.badge-rot { color: var(--rot); }
+.badge-orange { color: var(--akzent); }
+
+/* ---------- Warnungen ---------- */
+.alarme {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-height: 28rem;
+  overflow-y: auto;
+}
+.alarm {
+  display: grid;
+  grid-template-columns: 4px minmax(12rem, 1fr) minmax(8rem, 1fr) 7rem 11rem;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem 1.25rem 0.75rem 0;
+  border-bottom: 1px solid var(--linie);
+}
+.alarm:last-child { border-bottom: 0; }
+.alarm::before {                       /* farbiger Balken links */
+  content: "";
+  align-self: stretch;
+  background: var(--akzent);
+}
+.alarm-rot::before { background: var(--rot); }
+
+.alarm-kennzeichen {
+  font-weight: 700;
+  white-space: nowrap;
+}
+.alarm-fahrzeug { color: var(--text-gedaempft); font-size: 0.8125rem; }
+.alarm-art { font-weight: 500; }
+.alarm-datum { font-variant-numeric: tabular-nums; color: var(--text-gedaempft); }
+.alarm-frist {
+  justify-self: end;
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+  color: var(--akzent);
+  white-space: nowrap;
+}
+.alarm-rot .alarm-frist { color: var(--rot); }
+
+.leer, .fehler {
+  padding: 1.25rem;
+  margin: 0;
+  color: var(--text-gedaempft);
+}
+.fehler { color: var(--rot); }
+
+/* ---------- Diagramme ---------- */
+.diagramme {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--abstand);
+}
+.diagramm-breit { grid-column: 1 / -1; }
+figure.panel { margin: 0; }
+.diagramm-flaeche {
+  position: relative;
+  height: 300px;
+  padding: 1rem 1.25rem 1.25rem;
+}
+
+/* ---------- Filter ---------- */
+.filter {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 0.75rem 1rem;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--linie);
+}
+.feld { display: grid; gap: 0.35rem; min-width: 9rem; }
+.feld-suche { flex: 1 1 16rem; }
+input, select {
+  font: inherit;
+  color: var(--text);
+  background: var(--hintergrund);
+  border: 1px solid var(--linie);
+  border-radius: var(--radius);
+  padding: 0.55rem 0.7rem;
+  min-height: 2.5rem;
+}
+input::placeholder { color: #7D8076; }
+input:hover, select:hover { border-color: var(--text-gedaempft); }
+
+.knopf {
+  font: inherit;
+  font-size: 0.8125rem;
+  color: var(--text);
+  background: transparent;
+  border: 1px solid var(--linie);
+  border-radius: var(--radius);
+  padding: 0.55rem 0.9rem;
+  min-height: 2.5rem;
+  cursor: pointer;
+}
+.knopf:hover { border-color: var(--akzent); color: var(--akzent); }
+
+/* ---------- Tabelle ---------- */
+.tabelle-rahmen { overflow-x: auto; }
+.tabelle {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.8125rem;
+  font-variant-numeric: tabular-nums;
+}
+.tabelle th, .tabelle td {
+  padding: 0.6rem 0.9rem;
+  text-align: left;
+  border-bottom: 1px solid var(--linie);
+  white-space: nowrap;
+}
+.tabelle th {
+  position: sticky;
+  top: 0;
+  background: var(--flaeche-2);
+  font-weight: 500;
+}
+.tabelle .zahl { text-align: right; }
+.tabelle th button {
+  all: unset;
+  cursor: pointer;
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-gedaempft);
+}
+.tabelle th button::after { content: " ↕"; opacity: 0.4; }
+.tabelle th[aria-sort="ascending"] button::after { content: " ↑"; opacity: 1; color: var(--akzent); }
+.tabelle th[aria-sort="descending"] button::after { content: " ↓"; opacity: 1; color: var(--akzent); }
+.tabelle th button:hover, .tabelle th[aria-sort] button { color: var(--text); }
+.tabelle th button:focus-visible { outline: 2px solid var(--akzent); outline-offset: 2px; }
+
+.tabelle tbody tr { cursor: pointer; }
+.tabelle tbody tr:hover { background: var(--flaeche-2); }
+.link-kennzeichen {
+  all: unset;
+  cursor: pointer;
+  font-weight: 700;
+  color: var(--text);
+  border-bottom: 1px dotted var(--text-gedaempft);
+}
+.link-kennzeichen:hover { color: var(--akzent); border-color: var(--akzent); }
+.link-kennzeichen:focus-visible { outline: 2px solid var(--akzent); outline-offset: 2px; }
+
+.status { display: inline-flex; align-items: center; gap: 0.45rem; }
+.status::before { content: ""; width: 7px; height: 7px; background: var(--text-gedaempft); }
+.status-aktiv::before { background: var(--text); }
+.status-werkstatt { color: var(--akzent); }
+.status-werkstatt::before { background: var(--akzent); }
+.status-ausser { color: var(--text-gedaempft); }
+.status-ausser::before { background: transparent; border: 1px solid var(--text-gedaempft); }
+
+/* ---------- Detailansicht ---------- */
+.detail {
+  width: min(760px, calc(100vw - 2rem));
+  max-height: calc(100vh - 2rem);
+  padding: 0;
+  color: var(--text);
+  background: var(--flaeche);
+  border: 1px solid var(--linie);
+  border-top: 2px solid var(--akzent);
+}
+.detail::backdrop { background: rgba(15, 16, 14, 0.82); }
+.detail-kopf {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.25rem;
+  border-bottom: 1px solid var(--linie);
+  position: sticky;
+  top: 0;
+  background: var(--flaeche);
+  z-index: 1;
+}
+.detail-kopf h2 { font-size: 1.5rem; margin-top: 0.2rem; }
+.detail-inhalt { padding: 1.25rem; }
+.detail-inhalt h3 {
+  font-size: 1rem;
+  margin: 1.5rem 0 0.6rem;
+}
+.detail-infos {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  margin: 0;
+  background: var(--linie);
+  border: 1px solid var(--linie);
+}
+.detail-infos div { background: var(--hintergrund); padding: 0.7rem 0.9rem; }
+.detail-infos dt { font-size: 0.6875rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-gedaempft); }
+.detail-infos dd { margin: 0.2rem 0 0; font-weight: 500; font-variant-numeric: tabular-nums; }
+.detail-termine { list-style: none; margin: 0; padding: 0; }
+.detail-termine li {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.55rem 0;
+  border-bottom: 1px solid var(--linie);
+}
+.frist-rot { color: var(--rot); font-weight: 700; }
+.frist-orange { color: var(--akzent); font-weight: 700; }
+.tabelle-kompakt tbody tr { cursor: default; }
+
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0, 0, 0, 0);
+  white-space: nowrap; border: 0;
+}
+
+/* ---------- Fuß ---------- */
+.fuss {
+  padding: var(--abstand);
+  text-align: center;
+  border-top: 1px solid var(--linie);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 900px) {
+  .diagramme { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 720px) {
+  .diagramm-flaeche { height: 260px; padding: 0.75rem; }
+  .detail-infos { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .feld { flex: 1 1 calc(50% - 0.5rem); min-width: 0; }
+  .feld-suche { flex-basis: 100%; }
+  .detail { max-height: 100vh; width: 100vw; max-width: 100vw; margin: 0; height: 100vh; }
+  .alarm {
+    grid-template-columns: 4px 1fr auto;
+    grid-template-areas:
+      "balken kennz frist"
+      "balken art   datum";
+    gap: 0.25rem 0.75rem;
+  }
+  .alarm::before { grid-area: balken; }
+  .alarm-kennzeichen-block { grid-area: kennz; }
+  .alarm-art { grid-area: art; }
+  .alarm-datum { grid-area: datum; justify-self: end; }
+  .alarm-frist { grid-area: frist; }
+  .alarme { max-height: none; }       /* auf dem Handy scrollt die ganze Seite */
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { scroll-behavior: auto !important; transition: none !important; }
+}

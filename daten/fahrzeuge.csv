@@ -1,0 +1,51 @@
+id,kennzeichen,typ,marke,modell,baujahr,kraftstoff,standort,status
+1,HD-FM 1269,PKW,VW,Passat Variant,2019,Diesel,Heidelberg,aktiv
+2,HD-FM 3698,PKW,Skoda,Octavia Combi,2020,Diesel,Heidelberg,aktiv
+3,HD-FM 9028,PKW,VW,Passat Variant,2022,Diesel,Heidelberg,in Werkstatt
+4,LU-FM 206,PKW,Skoda,Octavia Combi,2017,Diesel,Ludwigshafen,aktiv
+5,LU-FM 328E,PKW,VW,ID.3,2020,Elektro,Ludwigshafen,aktiv
+6,LU-FM 3682,PKW,VW,Golf,2023,Benzin,Ludwigshafen,aktiv
+7,LU-FM 396E,PKW,VW,ID.3,2020,Elektro,Ludwigshafen,aktiv
+8,LU-FM 4903,PKW,Skoda,Octavia Combi,2022,Diesel,Ludwigshafen,aktiv
+9,LU-FM 6077,PKW,VW,Golf,2017,Benzin,Ludwigshafen,aktiv
+10,LU-FM 9297,PKW,Skoda,Octavia Combi,2016,Diesel,Ludwigshafen,aktiv
+11,LU-FM 9392,PKW,Opel,Astra,2020,Benzin,Ludwigshafen,aktiv
+12,MA-FM 259E,PKW,Hyundai,Kona Elektro,2021,Elektro,Mannheim,aktiv
+13,MA-FM 296E,PKW,Hyundai,Kona Elektro,2025,Elektro,Mannheim,aktiv
+14,MA-FM 5981,PKW,VW,Passat Variant,2019,Diesel,Mannheim,aktiv
+15,MA-FM 758E,PKW,VW,ID.3,2022,Elektro,Mannheim,aktiv
+16,MA-FM 9660,PKW,BMW,320d Touring,2018,Diesel,Mannheim,aktiv
+17,SP-FM 2777,PKW,BMW,320d Touring,2024,Diesel,Speyer,aktiv
+18,SP-FM 847E,PKW,Hyundai,Kona Elektro,2022,Elektro,Speyer,aktiv
+19,SP-FM 9035,PKW,VW,Passat Variant,2025,Diesel,Speyer,aktiv
+20,SP-FM 924E,PKW,VW,ID.3,2022,Elektro,Speyer,aktiv
+21,FT-FM 1390,Transporter,Ford,Transit Custom,2017,Diesel,Frankenthal,aktiv
+22,FT-FM 177E,Stapler,Linde,E20,2022,Elektro,Frankenthal,aktiv
+23,FT-FM 2805,Transporter,VW,Crafter,2016,Diesel,Frankenthal,aktiv
+24,FT-FM 6218,Transporter,VW,Crafter,2025,Diesel,Frankenthal,aktiv
+25,FT-FM 8769,Transporter,Mercedes-Benz,Sprinter,2020,Diesel,Frankenthal,aktiv
+26,FT-FM 8935,Transporter,Ford,Transit Custom,2022,Diesel,Frankenthal,aktiv
+27,FT-FM 9455,LKW,MAN,TGL 12.220,2020,Diesel,Frankenthal,aktiv
+28,HD-FM 1712,LKW,Mercedes-Benz,Atego 1224,2019,Diesel,Heidelberg,aktiv
+29,HD-FM 653E,Stapler,Jungheinrich,EFG 216,2024,Elektro,Heidelberg,aktiv
+30,HD-FM 8417,Transporter,VW,Crafter,2022,Diesel,Heidelberg,aktiv
+31,HD-FM 848E,Stapler,Jungheinrich,EFG 216,2023,Elektro,Heidelberg,aktiv
+32,LU-FM 1204,LKW,MAN,TGL 12.220,2013,Diesel,Ludwigshafen,außer Betrieb
+33,LU-FM 165E,Transporter,Mercedes-Benz,eSprinter,2024,Elektro,Ludwigshafen,in Werkstatt
+34,LU-FM 2691,Transporter,Ford,Transit Custom,2024,Diesel,Ludwigshafen,aktiv
+35,LU-FM 3708,LKW,Mercedes-Benz,Atego 1224,2012,Diesel,Ludwigshafen,außer Betrieb
+36,LU-FM 4961,Stapler,Still,RX70-30,2022,Diesel,Ludwigshafen,in Werkstatt
+37,LU-FM 6047,Transporter,Mercedes-Benz,Sprinter,2023,Diesel,Ludwigshafen,aktiv
+38,LU-FM 612E,Transporter,Mercedes-Benz,eSprinter,2020,Elektro,Ludwigshafen,aktiv
+39,LU-FM 7016,Transporter,Mercedes-Benz,Sprinter,2015,Diesel,Ludwigshafen,aktiv
+40,LU-FM 8053,LKW,MAN,TGL 12.220,2017,Diesel,Ludwigshafen,aktiv
+41,LU-FM 8789,Transporter,VW,Crafter,2016,Diesel,Ludwigshafen,aktiv
+42,LU-FM 8827,Transporter,Mercedes-Benz,Sprinter,2025,Diesel,Ludwigshafen,aktiv
+43,MA-FM 193E,Transporter,Mercedes-Benz,eSprinter,2022,Elektro,Mannheim,in Werkstatt
+44,MA-FM 499E,Stapler,Linde,E20,2023,Elektro,Mannheim,aktiv
+45,MA-FM 532E,Stapler,Linde,E20,2021,Elektro,Mannheim,aktiv
+46,MA-FM 592E,Stapler,Linde,E20,2020,Elektro,Mannheim,aktiv
+47,MA-FM 6769,LKW,DAF,LF 230,2019,Diesel,Mannheim,aktiv
+48,MA-FM 7039,LKW,MAN,TGL 12.220,2013,Diesel,Mannheim,aktiv
+49,SP-FM 1890,LKW,MAN,TGL 12.220,2018,Diesel,Speyer,aktiv
+50,SP-FM 8897,Transporter,Ford,Transit Custom,2022,Diesel,Speyer,aktiv
