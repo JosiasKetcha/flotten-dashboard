@@ -123,6 +123,10 @@ flotten-dashboard/
 - **[Chart.js 4](https://www.chartjs.org/)** über CDN
 - Schriften **JetBrains Mono** und **Space Grotesk** über Google Fonts
 
+## Entstehung
+
+Das Projekt habe ich mit **[Claude Code](https://claude.com/claude-code)** als KI-Assistent umgesetzt. Anforderungen, Datenmodell, Standorte, Gestaltung und die Reihenfolge der Arbeitsschritte habe ich vorgegeben. Jeden Schritt habe ich getestet, geprüft und bei Bedarf überarbeiten lassen, bevor der nächste begann.
+
 ---
 
 *Alle Daten in diesem Projekt sind synthetisch erzeugt. Ähnlichkeiten mit realen Unternehmen oder Fahrzeugen sind zufällig.*
