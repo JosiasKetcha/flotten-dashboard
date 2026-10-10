@@ -20,7 +20,7 @@ Das Projekt ist Teil meines Portfolios. Es zeigt den vollständigen Weg von den 
 | Bereich | Inhalt |
 |---|---|
 | Kennzahlen | Aktive Fahrzeuge, Fahrzeuge in der Werkstatt, Wartungskosten des laufenden Jahres (mit Vorjahresvergleich), Termine in den nächsten 30 Tagen |
-| Warnungen | Überfällige Termine (rot) und Termine in den nächsten 30 Tagen (orange), nach Dringlichkeit sortiert |
+| Warnungen | Überfällige Termine (bernstein) und Termine in den nächsten 30 Tagen (rot), nach Dringlichkeit sortiert |
 | Diagramme | Wartungskosten pro Monat, Kosten nach Fahrzeugtyp, Top 10 der Fahrzeuge nach Kilometern |
 | Fahrzeugtabelle | Volltextsuche, Filter nach Typ, Status und Standort, Sortierung per Klick auf die Spaltenköpfe |
 | Detailansicht | Stammdaten, offene Termine und Wartungshistorie eines Fahrzeugs |

@@ -1,6 +1,6 @@
 /* ==========================================================================
    Flotten-Dashboard – Stil "Cockpit"
-   Eine Akzentfarbe (Signalorange), dunkler Hintergrund, Mono für Zahlen.
+   Eine Akzentfarbe (Bernstein), dunkler Hintergrund, Mono für Zahlen.
    ========================================================================== */
 
 :root {
@@ -10,8 +10,8 @@
   --linie: #2C2F29;
   --text: #ECEDE8;
   --text-gedaempft: #A3A69C;   /* Kontrast ≥ 7:1 auf --hintergrund */
-  --akzent: #FF6A1F;
-  --rot: #FF4D4D;              /* nur für überfällige Termine */
+  --akzent: #E8B04A;
+  --rot: #FF4D4D;              /* Termine in den nächsten 30 Tagen */
 
   --mono: "JetBrains Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
   --titel: "Space Grotesk", system-ui, sans-serif;
@@ -135,7 +135,7 @@ main {
   height: 2px;
   background: var(--linie);
 }
-.kachel-akzent::before { background: var(--akzent); }
+.kachel-akzent::before { background: var(--rot); }
 .wert {
   font-family: var(--mono);
   font-size: clamp(2rem, 4vw, 2.75rem);
@@ -144,7 +144,7 @@ main {
   margin: 0.6rem 0 0.4rem;
   font-variant-numeric: tabular-nums;
 }
-.kachel-akzent .wert { color: var(--akzent); }
+.kachel-akzent .wert { color: var(--rot); }
 .unter {
   margin: 0;
   font-size: 0.8125rem;
@@ -179,8 +179,8 @@ main {
   text-transform: uppercase;
   white-space: nowrap;
 }
-.badge-rot { color: var(--rot); }
-.badge-orange { color: var(--akzent); }
+.badge-rot { color: var(--akzent); }
+.badge-orange { color: var(--rot); }
 
 /* ---------- Warnungen ---------- */
 .alarme {
@@ -202,9 +202,9 @@ main {
 .alarm::before {                       /* farbiger Balken links */
   content: "";
   align-self: stretch;
-  background: var(--akzent);
+  background: var(--rot);
 }
-.alarm-rot::before { background: var(--rot); }
+.alarm-rot::before { background: var(--akzent); }
 
 .alarm-kennzeichen {
   font-weight: 700;
@@ -217,10 +217,10 @@ main {
   justify-self: end;
   font-variant-numeric: tabular-nums;
   font-weight: 700;
-  color: var(--akzent);
+  color: var(--rot);
   white-space: nowrap;
 }
-.alarm-rot .alarm-frist { color: var(--rot); }
+.alarm-rot .alarm-frist { color: var(--akzent); }
 
 .leer, .fehler {
   padding: 1.25rem;
@@ -384,8 +384,8 @@ input:hover, select:hover { border-color: var(--text-gedaempft); }
   padding: 0.55rem 0;
   border-bottom: 1px solid var(--linie);
 }
-.frist-rot { color: var(--rot); font-weight: 700; }
-.frist-orange { color: var(--akzent); font-weight: 700; }
+.frist-rot { color: var(--akzent); font-weight: 700; }
+.frist-orange { color: var(--rot); font-weight: 700; }
 .tabelle-kompakt tbody tr { cursor: default; }
 
 .sr-only {
