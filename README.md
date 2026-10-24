@@ -20,7 +20,7 @@ Das Projekt ist Teil meines Portfolios. Es zeigt den vollständigen Weg von den 
 | Bereich | Inhalt |
 |---|---|
 | Kennzahlen | Aktive Fahrzeuge, Fahrzeuge in der Werkstatt, Wartungskosten des laufenden Jahres (mit Vorjahresvergleich), Termine in den nächsten 30 Tagen |
-| Warnungen | Überfällige Termine (bernstein) und Termine in den nächsten 30 Tagen (rot), nach Dringlichkeit sortiert |
+| Warnungen | Überfällige Termine (grün) und Termine in den nächsten 30 Tagen (rot), nach Dringlichkeit sortiert |
 | Diagramme | Wartungskosten pro Monat, Kosten nach Fahrzeugtyp, Top 10 der Fahrzeuge nach Kilometern |
 | Fahrzeugtabelle | Volltextsuche, Filter nach Typ, Status und Standort, Sortierung per Klick auf die Spaltenköpfe |
 | Detailansicht | Stammdaten, offene Termine und Wartungshistorie eines Fahrzeugs |
@@ -121,7 +121,7 @@ flotten-dashboard/
 - **SQLite**
 - **HTML, CSS, JavaScript** (ohne Framework und ohne Build-Schritt)
 - **[Chart.js 4](https://www.chartjs.org/)** über CDN
-- Schriften **JetBrains Mono** und **Space Grotesk** über Google Fonts
+- Schrift **Manrope** über Google Fonts
 
 ## Entstehung
 

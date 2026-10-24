@@ -1,6 +1,6 @@
 /* ==========================================================================
    Flotten-Dashboard – Stil "Cockpit"
-   Eine Akzentfarbe (Bernstein), dunkler Hintergrund, Mono für Zahlen.
+   Eine Akzentfarbe (Grün), dunkler Hintergrund, Mono für Zahlen.
    ========================================================================== */
 
 :root {
@@ -10,11 +10,11 @@
   --linie: #2C2F29;
   --text: #ECEDE8;
   --text-gedaempft: #A3A69C;   /* Kontrast ≥ 7:1 auf --hintergrund */
-  --akzent: #E8B04A;
+  --akzent: #3DD68C;
   --rot: #FF4D4D;              /* Termine in den nächsten 30 Tagen */
 
-  --mono: "JetBrains Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
-  --titel: "Space Grotesk", system-ui, sans-serif;
+  --mono: "Manrope", system-ui, sans-serif;
+  --titel: "Manrope", system-ui, sans-serif;
 
   --radius: 4px;
   --abstand: clamp(1rem, 2.5vw, 2rem);
@@ -64,28 +64,6 @@ h1, h2, h3 { font-family: var(--titel); font-weight: 700; margin: 0; }
   font-weight: 700;
 }
 .skip-link:focus { top: 1rem; }
-
-/* ---------- Hinweis-Banner ---------- */
-.hinweis-banner {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.6rem;
-  padding: 0.5rem var(--abstand);
-  border-bottom: 1px solid var(--akzent);
-  background: var(--flaeche);
-  color: var(--akzent);
-  font-size: 0.75rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  text-align: center;
-}
-.hinweis-punkt {
-  width: 8px;
-  height: 8px;
-  flex: none;
-  background: var(--akzent);
-}
 
 /* ---------- Kopf ---------- */
 .kopf {
